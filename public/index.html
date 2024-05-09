@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المدن الجامعيه</title>
+    <link rel="shortcut icon" href="images/tanta-univ.png">
+    <!-- main template css file -->
+    <link rel="stylesheet" href="css/login.css" />
+    <!-- render all elements normally -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <!-- font awesome library -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500&display=swap"
+    rel="stylesheet">
+</head>
+<body>
+    <!-- Start Header -->
+    <div class="Header">
+        <div class="container">
+            <video class="video" autoplay muted loop src="images/video.mp4" type="video/mp4"></video>
+            <img class="logo" src="images/logo.webp" alt="">
+            <img class="gif" src="images/2030.gif" alt="">
+            <div class="links" >
+            <span class="icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+            <ul>
+                <!-- <li><a href="#services">Services</a></li>           
+                <li><a href="#portfolio">Protofolio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li> -->
+                <li><a href="table.html">Services</a></li>           
+                <li><a href="index.html">booking</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="social.html">Contact</a></li>
+            </ul>
+        </div>
+        <a href="main.html">
+            <img src="images/user.png" id="user-img" alt="">
+        </a> 
+
+        </div>
+    </div>
+    <!-- End Header -->
+    <!-- start login -->
+    <div style="height: 250px; background-color: #00a1ad58;">
+        <div 
+            class="container" 
+            style="margin: 100px; align-items: center; padding-top: 16px; padding-left: 500px;">
+            <div class="login">
+                <form method="post" id="SignInForm"> 
+                    <div >
+                        <input 
+                            type="text" 
+                            autocomplete="off" 
+                            id="text" 
+                            placeholder="اسم الطالب باللغة العربيه" 
+                            name="username" 
+                            style="direction: rtl;"
+                        >
+                        <input 
+                            type="password" 
+                            autocomplete="off" 
+                            id="password" 
+                            placeholder="الرقم التسجيلى" 
+                            name="password" 
+                            style="direction: rtl;"
+                        >
+                        <button type="submit" class="submit-btn" name="submit-btn" > Log - In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+    <!--  end login -->
+    <!-- Javascript-->
+    <!-- <script>
+        // Set the time when the alert should trigger
+        const endTime = new Date('2024-05-01T12:00:00').getTime(); // Example: May 1, 2024, 12:00 PM
+        
+        // Function to check the time periodically
+        const checkTime = setInterval(function() {
+          const currentTime = new Date().getTime(); // Get the current time
+          
+          // Check if the current time is equal to or past the end time
+          if (currentTime >= endTime) {
+            // Perform actions when the time is up
+            clearInterval(checkTime); // Stop checking the time
+            alert('Time is up!'); // Display an alert message
+            window.Location.href= 'https://example.com/another-page';// You can add more actions here, such as redirecting the user to another page
+          }
+        }, 1000); // Check the time every second (1000 milliseconds)
+    </script> -->
+</body>
+</html>
