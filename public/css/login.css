@@ -1,0 +1,233 @@
+:root {
+  --main-color: #00a2ad;
+  --secondary-color: #b2e3e6;
+  --section-padding: 60px;
+  --section-background: #f6f6f6;
+  --main-transition: 0.3s;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Kufi Arabic", sans-serif;
+}
+
+
+
+.container{ margin: auto;
+
+
+padding-left: 15px;
+padding-right: 15px;
+margin-left: auto;
+margin-right:auto ;
+}
+/* small */
+@media(min-width:768px){
+    .container{
+    width: 750px;
+    }
+    }
+    
+    /* medium */
+    @media(min-width:992px){
+    .container{
+    width: 970px;
+    }
+    }
+    /* large */
+    @media(min-width:1200px){
+    .container{
+    width: 1170px;
+    }
+    }
+    /* end global rules */
+    
+     /* Start Componant  */
+    /* .special-heading{
+    color: #ebeced;   
+    font-size: 100px;
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: -3px;
+    margin: 0;
+    }
+    .special-heading + p{
+        margin: -30px 0 0;
+        font-size: 20px;
+        text-align: center;
+        color: #797979;
+    } */
+    @media(max-width:767px){
+        .special-heading{
+            font-size: 60px;
+        }
+        .special-heading + p{
+            margin-top: 20px;
+        }
+    }
+    /*  End   Componant  */
+    
+    /* start a header */
+    
+    .Header{
+    padding: 20px;
+    
+    }
+    .Header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .Header{
+        background-color: #00a2ad ;
+    }
+    .Header .container .video{
+        object-fit: cover;
+        position: fixed;
+       right: 0;
+       top:  0;
+       bottom: 0;
+       top:0;
+       width: 100vw;
+       height: 100vw;
+       z-index: -1;
+    }
+    .Header .logo{
+    width: 250px;
+    }
+    .Header .gif{
+      width: 200px;
+    }
+    .Header .links{
+    position: relative;
+    
+    }
+    .Header .links:hover .icon span:nth-child(2){
+    width: 100%;
+    
+    }
+    .Header .links .icon  {
+    width: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    }
+    .Header .links .icon span{
+    /* background-color: #333; */
+    background-color: #ebeced;
+    margin-bottom: 5px;
+    }
+    .Header .links .icon span:first-child{
+    height: 3px;
+    width: 100%;
+    }
+    .Header .links .icon span:nth-child(2){
+    height: 3px;
+    width: 60%;
+    transition: var(--main-transition);
+    }
+    .Header .links .icon span:last-child{
+    height: 3px;
+    width: 100%;
+    /* background-color: #3333338c; */
+    }
+    
+    .Header .links:hover ul{
+    display: block;
+    }
+    
+    .Header .links ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+    position: absolute;
+    right: 0;
+    min-width: 200px;
+    top: 40px ;
+    display: none;
+    z-index: 1;
+    
+    
+    }
+    .Header .links ul::before{
+    content: "";
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent  #f6f6f6 transparent ;
+    position: absolute;
+    right: 5px;
+    top: -20px;
+    
+    }
+    .Header .links ul li a{
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: var(--main-transition);
+    }
+    .Header .links ul li a:hover{
+    padding-left:25px ;
+    }
+    .Header .links ul li:not(:last-child) a {
+    border-bottom: 1px solid #ddd;
+    
+    }
+/* start login */
+/* .container .login .form{
+    align-items: center;
+    background-color: #00a1ad58;
+} */
+input[type="text"],
+input[type="password"],
+textarea{
+    display: block;
+    width: 300px;
+    height: 40px;
+    padding: 20px;
+    border-radius: 5px;
+    background: #fff;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin: 20px 0;
+    color: #383838;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.01);
+    font-family: "Noto Kufi Arabic", sans-serif;
+}
+
+::placeholder{
+    color: #383838;
+}
+
+.submit-btn{
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background: #00a2ad;
+    border-radius: 10px;
+    color: #fff;
+    text-transform: capitalize;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 30px 0;
+}
+
+
+
+
+/* end login */
+
+
+
