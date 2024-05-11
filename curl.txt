@@ -1,0 +1,21 @@
+curl -X POST http://localhost:3000/register \
+-H "Content-Type: application/json" \
+-d '{
+    "username": "IBRAHIM",
+    "password": "ggehit44",
+    "role": "Student",
+    "email": "ebrahimaboeita990@gmail.com"
+}'
+
+
+curl http://localhost:3000/meals
+
+
+curl -X POST http://localhost:3000/register \
+-H "Content-Type: application/json" \
+-d '{
+    "username": "Hema",
+    "password": "ggehit44",
+    "role": "Admin",
+    "email": "ebrahimaboeita990@gmail.com"
+}'

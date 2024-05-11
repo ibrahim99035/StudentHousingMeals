@@ -3,21 +3,20 @@
 <head>
     <style>
         body {
-          background: #f1f4f7;
-          /* background: #00a2ad; */
-      /* margin-top: -50px; */
-          /* padding-top: 0px; */
-          font-size: 14px;
-          color: #444444;
-          font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background: #f1f4f7;
+        /* background: #00a2ad; */
+        /* margin-top: -50px; */
+        /* padding-top: 0px; */
+        font-size: 14px;
+        color: #444444;
+        font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
       .page-header{
-          padding-bottom: 0px;
-          margin: 0px;
-        
-      } 
+        padding-bottom: 0px;
+        margin: 0px;
+       } 
     </style>
-    <title>Services</title>
+    <title>Dashboard</title>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,6 +33,7 @@
     <link href="scss/bootstrap.min.css" rel="stylesheet">
     <link href="scss/datepicker3.css" rel="stylesheet">
     <link href="scss/table.css" rel="stylesheet">
+    <link href="css/meals-table.css" rel="stylesheet">
 </head>
 <body>
     <div class="preloader">
@@ -94,7 +94,7 @@
                 <li><a href="/contacts">Contact</a></li>
               </ul>
           </div>
-          <a href="/profile">
+          <a href="/">
               <img src="images/user.png" id="user-img" alt="">
           </a> 
           
@@ -113,7 +113,7 @@
         <div class="container">
           <ul class="breadcrumbs-custom-path">
             <li><a href="/">Home</a></li>
-            <li class="active">reservation</li>
+            <li class="active">Dashboard</li>
           </ul>
         </div>
       </section>
@@ -121,62 +121,25 @@
         <div class="container">
           <div class="row row-60 justify-content-center">
             <div class="col-lg-8">
-              <h4 class="text-spacing-25 text-transform-none">Complete your reservation</h4>
-              <form method="post">
-                <table class="table  table-hover table-bordered text-center ">
-                    <thead class="thead-dark  " style="background-color: #00a2ad; color: white;">
-                      <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">lunch</th>
-                        <th scope="col">breakfast</th>
-                        <th scope="col">dinner</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td><input type="checkbox" id="meal1" value="starches" >starches
-                          <br><input type="radio" name="meal1" id="meal1" value="rice" >rice <input type="radio"  name="meal1" id="meal1" value="macaroni">macaroni</td>
-                        <td rowspan="4"><input type="checkbox" id="meal5" value="breakfast" >breakfast </td>
-                        <td rowspan="4"><input type="checkbox" id="meal6" value="breakfast" >dineer </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td><input type="checkbox" id="meal2" value="protein" >protein 
-                          <br><input type="radio" name="meal2" id="meal2" value="meat" >meat <input type="radio"  name="meal2" id="meal2" value="chicken">chicken <input type="radio"  name="meal2" id="meal2" value="fish">fish
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td><input type="checkbox" id="meal3" value="legumes" >legumes & starches
-                          <br><input type="radio" name="meal3" id="meal3" value="potatoes" >potatoes <input type="radio"  name="meal3" id="meal3" value="beans">beans <input type="radio"  name="meal3" id="meal3" value="beans">lobbies
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td><input type="checkbox" id="meal4" value="fruits" >fruits</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">5</th>
-                        <td><input type="checkbox" id="meal5" value="vegetables" >green Salads</td>
-                      </tr>
-                    </tbody>
-                </table>
-        
-                <button 
-                  class="button button-lg button-primary button-winona wow fadeInRight" 
-                  style="margin:20px; margin: 20px;
-                    padding: 15px;
-                    background-color:#00a2ad;
-                    border: none;
-                    color: white;" 
+              <h4 class="text-spacing-25 text-transform-none">Meals Table</h4>
+              <table id="mealTable" class="meal-table">
+                <thead>
+                  <tr>
+                    <th>Meal ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Type</th>
+                    <th>Ingredients</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
                   
-                  type="submit"
-                >
-                  Complete reservation
-                </button>
-            </form>
-          </div>
+                </tbody>
+              </table>
+            </div>
         </div>
         </div>
       </section>
@@ -283,7 +246,8 @@
     <div class="snackbars" id="form-output-global"></div>
     <!-- Javascript-->
     <script src="js/user-checkpoint.js"></script>
-    <script src="js/meal.js"></script>
+    <script src="js/admin-checkpoint.js"></script>
+    <script src="js/getMeals.js"></script>
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script> 
 </body>

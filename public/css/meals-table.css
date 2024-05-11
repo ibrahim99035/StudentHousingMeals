@@ -1,0 +1,26 @@
+/* CSS styles for the table */
+.meal-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.meal-table th,
+.meal-table td {
+    padding: 10px;
+    border: 1px solid #ddd; /* Add borders to cells */
+}
+
+.meal-table th {
+    background-color: #f2f2f2; /* Gray background color for table header */
+    text-align: left; /* Align text to the left in header cells */
+}
+
+/* Alternate row background color */
+.meal-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect for rows */
+.meal-table tbody tr:hover {
+    background-color: #f5f5f5;
+}

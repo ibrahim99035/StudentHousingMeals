@@ -21,9 +21,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok) {
                 // Login successful, do something with the response data
                 console.log('Login successful:', data);
+
                 // Store token and user model in local storage
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
+
+                // Redirect to reservation page
+                window.location.href = '/reservation';
             } else {
                 // Login failed, handle the error
                 console.error('Login failed:', data.error);
