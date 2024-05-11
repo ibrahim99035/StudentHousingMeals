@@ -1,4 +1,4 @@
-curl -X POST http://localhost:3000/register \
+curl -X POST https://studenthousingmeals.onrender.com/register \
 -H "Content-Type: application/json" \
 -d '{
     "username": "IBRAHIM",
@@ -8,13 +8,13 @@ curl -X POST http://localhost:3000/register \
 }'
 
 
-curl http://localhost:3000/meals
+curl https://studenthousingmeals.onrender.com/meals
 
 
 curl -X POST http://localhost:3000/register \
 -H "Content-Type: application/json" \
 -d '{
-    "username": "Hema",
+    "username": "Dina",
     "password": "ggehit44",
     "role": "Admin",
     "email": "ebrahimaboeita990@gmail.com"
