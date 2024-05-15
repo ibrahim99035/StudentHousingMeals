@@ -24,3 +24,139 @@
 .meal-table tbody tr:hover {
     background-color: #f5f5f5;
 }
+
+.qr-code-container {
+    text-align: center; /* Center-align QR code */
+    margin: 20px auto; /* Center the container horizontally */
+    background-color: aqua;
+    width: 32%;
+    margin: auto;
+    padding: auto;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Adjust the width as needed */
+    height:80%;
+    min-width: 800px; /* Set maximum width */
+    background-color: #fefefe;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS for the modal content */
+.modal-content {
+    padding:20px;
+}
+
+/* CSS for the close button */
+.close {
+    color: #252525;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    width: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 29px;
+}
+
+.delete-icon {
+    color: rgba(41, 8, 8, 0.527); 
+    font-size: 20px; 
+    cursor: pointer;
+} 
+.delete-icon:hover{
+    color: rgb(68, 14, 14); 
+    font-size: 24px; 
+}
+.true-icon {
+    color: rgba(7, 240, 38, 0.527); 
+    font-size: 20px; 
+    cursor: pointer;
+} 
+.true-icon:hover{
+    color: rgb(7, 240, 38);  
+    font-size: 24px; 
+}
+.false-icon {
+    color: rgba(255, 0, 0, 0.527); 
+    font-size: 20px; 
+    cursor: pointer;
+} 
+.false-icon:hover{
+    color: rgb(255, 0, 0); 
+    font-size: 24px; 
+}
+.icon-rows{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+#modal-content {
+    background-color: white;
+    height: 100%;
+    margin-top: 30px;
+    margin: auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 15px;
+    width: 80%; 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    animation-name: modalopen; /* Fade in animation */
+    animation-duration: 0.4s;
+    margin-bottom: 5rem;
+}
+
+.qr-button{
+    color: rgba(6, 18, 68, 0.788); 
+    font-size: 20px; 
+    cursor: pointer;
+}
+
+.qr-button:hover{
+    color: rgb(6, 18, 68); 
+    font-size: 24px; 
+}
+
+.downloadIcon{
+    color: rgba(6, 18, 68, 0.788);
+    font-size: 20px; 
+    cursor: pointer;
+    width: 10%;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.downloadIcon:hover{
+    color: rgb(6, 18, 68);  
+}
+
+#toggleStatus{
+    color: rgba(6, 18, 68, 0.788); 
+    font-size: 35px; 
+    cursor: pointer;
+    font-style: normal;
+    text-align: center;
+}
+#toggleStatus:hover{
+    color: rgb(6, 18, 68); 
+    font-size: 36px; 
+}
+
+@keyframes modalopen {
+    from {opacity: 0} 
+    to {opacity: 1}
+}

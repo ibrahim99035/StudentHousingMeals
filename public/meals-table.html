@@ -14,7 +14,7 @@
       .page-header{
         padding-bottom: 0px;
         margin: 0px;
-       } 
+      }
     </style>
     <title>Dashboard</title>
     <meta name="format-detection" content="telephone=no">
@@ -34,6 +34,7 @@
     <link href="scss/datepicker3.css" rel="stylesheet">
     <link href="scss/table.css" rel="stylesheet">
     <link href="css/meals-table.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="preloader">
@@ -120,7 +121,7 @@
       <section class="section section-lg bg-default text-md-left">
         <div class="container">
           <div class="row row-60 justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-16">
               <h4 class="text-spacing-25 text-transform-none">Meals Table</h4>
               <table id="mealTable" class="meal-table">
                 <thead>
@@ -132,6 +133,12 @@
                     <th>Type</th>
                     <th>Ingredients</th>
                     <th>Date</th>
+                    <th>Pending</th>
+                    <th>Prepared</th>
+                    <th>Expired</th>
+                    <th>Reserved</th>
+                    <th>QR Code</th>
+                    <th>Delete</th>
                   </tr>
                 </thead>
                 
@@ -244,7 +251,14 @@
     </div>
     <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
+      </div>
+    </div>
     <!-- Javascript-->
+    <script src="js/qrcode.min.js"></script>
     <script src="js/user-checkpoint.js"></script>
     <script src="js/admin-checkpoint.js"></script>
     <script src="js/getMeals.js"></script>

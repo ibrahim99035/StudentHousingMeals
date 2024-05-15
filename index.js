@@ -17,6 +17,8 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
+app.use(express.urlencoded({ extended: true }));
+
 // User Registration
 app.post('/register', async (req, res) => {
     const { username, password, role, email } = req.body;
@@ -138,10 +140,14 @@ app.get('/meals-panel', (req, res) => {
 app.get('/profile', (req, res) => {
     res.sendFile(__dirname + '/public/profile.html');
 });
+
+app.get('/unavailable', (req, res) => {
+    res.sendFile(__dirname + '/public/WorkingHours.html');
+});
 // -----------------------------------------------------------------
 // Route to get all meals in the database
 app.get('/meals', (req, res) => {
-    db.all('SELECT Meals.*, Users.username, Users.email, Users.role FROM Meals INNER JOIN Users ON Meals.userID = Users.id', (err, rows) => {
+    db.all('SELECT Meals.*, Users.username, Users.email, Users.role, Meals.prepared, Meals.reserved, Meals.expired, Meals.pending FROM Meals INNER JOIN Users ON Meals.userID = Users.id', (err, rows) => {
         if (err) {
             console.error(err.message);
             return res.status(500).json({ error: 'Internal Server Error' });
@@ -153,34 +159,44 @@ app.get('/meals', (req, res) => {
 // Route to post a new meal
 app.post('/meals', (req, res) => {
     const { userID, type, content = 'default', date } = req.body;
-    db.run('INSERT INTO Meals (userID, type, content, date) VALUES (?, ?, ?, ?)', [userID, type, content, date], function(err) {
+    db.get('SELECT * FROM Meals WHERE userID = ? AND type = ? AND pending = 1', [userID, type], (err, existingMeal) => {
         if (err) {
             console.error(err.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-        db.get('SELECT * FROM Meals WHERE id = ?', [this.lastID], (err, row) => {
+
+        if (existingMeal) {
+            return res.status(400).json({ error: 'You already have a pending meal of this type' });
+        }
+        db.run('INSERT INTO Meals (userID, type, content, date) VALUES (?, ?, ?, ?)', [userID, type, content, date], function(err) {
             if (err) {
                 console.error(err.message);
                 return res.status(500).json({ error: 'Internal Server Error' });
             }
-            db.get('SELECT * FROM Users WHERE id = ?', [userID], async (err, user) => {
+            db.get('SELECT * FROM Meals WHERE id = ?', [this.lastID], (err, row) => {
                 if (err) {
                     console.error(err.message);
                     return res.status(500).json({ error: 'Internal Server Error' });
                 }
-    
-                if (!user) {
-                    return res.status(401).json({ error: 'There is no user with that id.' });
-                }
-    
-                res.status(201).json({row, user});
+                db.get('SELECT * FROM Users WHERE id = ?', [userID], async (err, user) => {
+                    if (err) {
+                        console.error(err.message);
+                        return res.status(500).json({ error: 'Internal Server Error' });
+                    }
+        
+                    if (!user) {
+                        return res.status(401).json({ error: 'There is no user with that id.' });
+                    }
+        
+                    res.status(201).json({row, user});
+                });
+                
             });
-            
         });
     });
 });
 
-// Route to delete a meal by ID within 1 hour
+// Route to delete a meal by ID
 app.delete('/meals/:id', (req, res) => {
     const { id } = req.params;
     db.run('DELETE FROM Meals WHERE id = ?', [id], function(err) {
@@ -192,7 +208,7 @@ app.delete('/meals/:id', (req, res) => {
     });
 });
 
-// Route to update a meal by ID within 1 hour
+// Route to update a meal by ID 
 app.put('/meals/:id', (req, res) => {
     const { id } = req.params;
     const { type, content, date } = req.body;
@@ -214,6 +230,84 @@ app.get('/meals/user/:userId', (req, res) => {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
         res.json(rows);
+    });
+});
+
+// Route to get all meals for today per user
+app.get('/meals/today/:userId', (req, res) => {
+    const { userId } = req.params;
+
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split('T')[0];
+
+    // Query the database for meals scheduled for today for the specified user
+    db.all('SELECT Meals.*, Users.username, Users.email, Users.role FROM Meals INNER JOIN Users ON Meals.userID = Users.id WHERE DATE(MEALS.date/1000, "unixepoch") = ? AND Users.id = ?', [today, userId], (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'No meals found for today for the specified user' });
+        }
+
+        res.json(rows);
+    });
+});
+
+
+
+// Route to update the 'prepared' Boolean value for a meal by ID
+app.put('/meals/:id/prepared', (req, res) => {
+    const { id } = req.params;
+    const { prepared } = req.body;
+    db.run('UPDATE Meals SET prepared = ? WHERE id = ?', [prepared, id], function(err) {
+        if (err) {
+            console.error(err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json({ message: 'Prepared status updated successfully' });
+    });
+});
+
+// Route to update the 'reserved' Boolean value for a meal by ID
+app.put('/meals/:id/reserved', (req, res) => {
+    const { id } = req.params;
+    const { reserved } = req.body;
+    const pending = !reserved;
+    db.run('UPDATE Meals SET reserved = ?, pending = ? WHERE id = ?', [reserved, pending, id], function(err) {
+        if (err) {
+            console.error(err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json({ message: 'Reserved status updated successfully' });
+    });
+});
+
+// Route to update the 'expired' Boolean value for a meal by ID
+app.put('/meals/:id/expired', (req, res) => {
+    const { id } = req.params;
+    const { expired } = req.body;
+    const pending = !expired; 
+    db.run('UPDATE Meals SET expired = ?, pending = ? WHERE id = ?', [expired, pending, id], function(err) {
+        if (err) {
+            console.error(err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json({ message: 'Expired status updated successfully' });
+    });
+});
+
+// Route to update the 'pending' Boolean value for a meal by ID
+app.put('/meals/:id/pending', (req, res) => {
+    const { id } = req.params;
+    const { pending } = req.body;
+    db.run('UPDATE Meals SET pending = ? WHERE id = ?', [pending, id], function(err) {
+        if (err) {
+            console.error(err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json({ message: 'Pending status updated successfully' });
     });
 });
 

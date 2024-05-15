@@ -28,7 +28,7 @@ function extractMealInfo() {
     };
 
     // Check if breakfast is selected
-    mealInfo.breakfast = document.getElementById("meal5").checked;
+    mealInfo.breakfast = document.getElementById("meal9").checked;
 
     if(mealInfo.breakfast){
         let mealData = {
@@ -36,13 +36,14 @@ function extractMealInfo() {
             type: 'breakfast',
             date: Date.now()
         }
-        serverCall(mealData);
+        serverCall(mealData); 
     }
 
     // Check if lunch is selected
     mealInfo.lunch.flag = document.getElementById("meal1").checked || document.getElementById("meal2").checked || document.getElementById("meal3").checked || document.getElementById("meal4").checked || document.getElementById("meal5").checked;
 
     // Check if starches option is selected for lunch
+    lunch_content = '';
     if (mealInfo.lunch.flag) {
         mealInfo.lunch.starches.flag = document.getElementById("meal1").checked;
         if (mealInfo.lunch.starches.flag) {
@@ -80,7 +81,9 @@ function extractMealInfo() {
             content: lunch_content,
             date: Date.now()
         }
-        serverCall(mealData);
+        console.log('Lunch content:', lunch_content);
+
+        serverCall(mealData); 
     }
 
     
@@ -94,12 +97,11 @@ function extractMealInfo() {
             type: 'dinner',
             date: Date.now()
         }
+        
         serverCall(mealData);
+        
     }
-
-    // Return the extracted meal information
-    console.log(mealInfo);
-    
+    window.location.href = '/profile';
     return mealInfo;
 }
 
@@ -109,13 +111,8 @@ function handleFormSubmission(event) {
     // Prevent the default form submission behavior
     event.preventDefault();
 
-    // Extract meal information
-    var mealInformation = extractMealInfo();
-
-    // Output the extracted meal information
-    console.log(JSON.stringify(mealInformation, null, 4));
-
-    // You can optionally perform other actions here, such as sending the data to a server via AJAX
+    extractMealInfo();
+    
 }
 
 function serverCall(mealData){

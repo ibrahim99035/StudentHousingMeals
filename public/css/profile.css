@@ -7,7 +7,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.user-profile h2 {
+.user-profile h2 { 
     font-size: 24px;
     margin-bottom: 15px;
 }
@@ -25,11 +25,12 @@
 }
 
 /* Styles for Meals Table */
-.meals-table {
+.meals-table, .meals-today-table {
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
 }
 
 .meals-table h2 {
@@ -58,4 +59,16 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
     background-color: #f0f0f0;
+}
+
+
+.qr-button{
+    font-style: normal;
+    color: rgba(6, 18, 68, 0.788); 
+    font-size: 30px; 
+    cursor: pointer;
+}
+
+.qr-button:hover{
+    color: rgb(6, 18, 68); 
 }

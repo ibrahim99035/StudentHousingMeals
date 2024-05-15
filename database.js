@@ -27,6 +27,10 @@ db.run(`CREATE TABLE IF NOT EXISTS Meals (
     type TEXT CHECK(type IN ('breakfast', 'dinner', 'lunch')),
     content TEXT DEFAULT 'default',
     date TEXT,
+    prepared BOOLEAN DEFAULT 0,
+    reserved BOOLEAN DEFAULT 0,
+    expired BOOLEAN DEFAULT 0,
+    pending BOOLEAN DEFAULT 1,
     FOREIGN KEY (userID) REFERENCES Students(id)
 )`);
 

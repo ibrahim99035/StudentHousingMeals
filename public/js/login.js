@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('user', JSON.stringify(data.user));
 
                 // Redirect to reservation page
-                window.location.href = '/reservation';
+                window.location.href = '/profile';
             } else {
                 // Login failed, handle the error
                 console.error('Login failed:', data.error);
