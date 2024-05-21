@@ -143,6 +143,7 @@ function serverCall(mealData){
     })
     .catch(error => {
         console.error('Error adding meal:', error);
+        alert('You cannot add same meal twice for one day!!')
     });
 }
 
