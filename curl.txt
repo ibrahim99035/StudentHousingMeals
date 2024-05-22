@@ -14,7 +14,7 @@ curl https://studenthousingmeals.onrender.com/meals
 curl -X POST http://localhost:3000/register \
 -H "Content-Type: application/json" \
 -d '{
-    "username": "Aysha",
+    "username": "Salma",
     "password": "ggehit44",
     "role": "Admin",
     "email": "ebrahimaboeita990@gmail.com"

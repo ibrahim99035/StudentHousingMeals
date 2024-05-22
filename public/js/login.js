@@ -29,8 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Redirect to reservation page
                 window.location.href = '/profile';
             } else {
-                // Login failed, handle the error
-                console.error('Login failed:', data.error);
+                // // Login failed, handle the error
+                // console.error('Login failed:', data.error);
+                alert(`Login failed: ${data.error}`)
             }
         } catch (error) {
             console.error('Error:', error);
